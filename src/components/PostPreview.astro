@@ -13,6 +13,7 @@ interface Props {
 
 const { post } = Astro.props
 
+const isExternal = !!post.data.redirect
 const { remarkPluginFrontmatter } = await render(post)
 const description = remarkPluginFrontmatter.description || post.data.description
 let tags: Collation<'posts'>[] | undefined
@@ -21,12 +22,13 @@ if (post.data.tags && post.data.tags.length > 0) {
   tags = tagsGroup.matchMany(post.data.tags)
 }
 const samePage = Astro.url.pathname === `/posts/${post.id}`
-const articleLink = samePage ? `#${post.id}` : `/posts/${post.id}`
+const articleLink = isExternal ? post.data.redirect : (samePage ? `#${post.id}` : `/posts/${post.id}`)
+const linkTarget = isExternal ? "_blank" : "_self"
 ---
 
 <article class="w-full py-5 my-1 md:my-4 border-accent/10">
   <h1 class="mb-3 text-2xl text-heading1 font-semibold">
-    <a href={articleLink}># {post.data.title}</a>
+    <a href={articleLink} target={linkTarget}># {post.data.title}</a>
   </h1>
   <PostInfo post={post} class="mb-3 mt-4" />
   {description && <p class="pl-0.5 my-4 text-base/7 text-foreground">{description}</p>}

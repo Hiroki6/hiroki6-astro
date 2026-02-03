@@ -153,6 +153,8 @@ export type SocialLinks = {
   bluesky?: string
   linkedin?: string
   email?: string
+  medium?: string
+  speakerdeck?: string
   rss?: boolean
 }
 
