@@ -99,7 +99,7 @@ const { socialLinks } = Astro.props
   {
     socialLinks.medium && (
       <a
-        href={`mailto:${socialLinks.medium}`}
+        href={socialLinks.medium}
         target="_blank"
         rel="noopener noreferrer"
         class="social-link"
@@ -112,7 +112,7 @@ const { socialLinks } = Astro.props
   {
     socialLinks.speakerdeck && (
       <a
-        href={`mailto:${socialLinks.speakerdeck}`}
+        href={socialLinks.speakerdeck}
         target="_blank"
         rel="noopener noreferrer"
         class="social-link"

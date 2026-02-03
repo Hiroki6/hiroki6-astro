@@ -124,6 +124,7 @@ const config: SiteConfig = {
     linkedin: 'https://www.linkedin.com/in/hiroki-fujino-502851137/',
     medium: 'https://medium.com/@hirokifujino',
     speakerdeck: 'https://speakerdeck.com/hiroki6',
+    email: "hirokifujino0108@gmail.com",
     rss: true,
   },
   /*giscus: {
