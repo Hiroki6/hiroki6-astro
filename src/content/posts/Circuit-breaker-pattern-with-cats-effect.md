@@ -5,5 +5,5 @@ published: 2020-04-28
 template: "post"
 draft: false
 category: "Scala"
-tags: ['Scala', 'Functional Programming']
+tags: ['Scala']
 ---

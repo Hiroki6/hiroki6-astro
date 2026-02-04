@@ -5,7 +5,7 @@ template: "post"
 draft: false
 slug: "ctflearn-easy-challenges"
 category: "Security"
-tags: ['CTF', 'Security']
+tags: ['Security']
 description: "About CTFlearn easy challenges; the commands and tools to solve these challenges"
 socialImage: "../../assets/images/posts/hacker.jpg"
 ---

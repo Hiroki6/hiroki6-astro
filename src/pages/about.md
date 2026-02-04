@@ -31,6 +31,6 @@ Living in Berlin since 2019.
 Scala, Go, Rust, Python, AWS, GCP, Kubernetes, DDD, Microservices, CTF, Reverse engineering
 
 ### Interests
-Cyber security, Linkin Park, MMA, Boxing, Japanese BBQ
+Red teaming, Malware development, Malware analysis, Zig 
 
-[source code](https://github.com/Hiroki6/hiroki-site)
+[source code](https://github.com/Hiroki6/hiroki6-astro)

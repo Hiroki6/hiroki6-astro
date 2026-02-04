@@ -5,7 +5,7 @@ template: "post"
 draft: false
 slug: "simple-encryptor"
 category: "Security"
-tags: ['Security', 'HackTheBox', 'Reverse Engineering']
+tags: ['Security', 'Writeup']
 description: "Writeups of Simple Encryptor reverse engineering challenge in HackTheBox."
 socialImage: "../../assets/images/posts/random_numbers.jpg"
 ---

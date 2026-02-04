@@ -5,5 +5,5 @@ published: 2020-02-28
 template: "post"
 draft: false
 category: "GCP"
-tags: ['Python', 'Dataflow', 'GCP']
+tags: ['Python', 'GCP']
 ---

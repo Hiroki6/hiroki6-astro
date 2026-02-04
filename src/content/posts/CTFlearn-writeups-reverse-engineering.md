@@ -5,7 +5,7 @@ template: "post"
 draft: false
 slug: "writesup-reverse-engineering"
 category: "Reverse Engineering"
-tags: ['CTF', 'Security', 'Reverse Engineering']
+tags: ['Security', 'Writeup']
 description: "Writeups of 'Ramada' and 'Recklinghausen' in CTFlearn reverse engineering challenge"
 socialImage: "../../assets/images/posts/ctfwritesup/binary.jpg"
 ---

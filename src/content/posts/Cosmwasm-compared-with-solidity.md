@@ -4,7 +4,7 @@ published: 2022-03-27
 template: "post"
 draft: false
 slug: "cosmwasm-compared-with-solidity"
-tags: ['SmartContract']
+tags: ['Web3']
 description: "compare Cosmwasm with Solidity from a coding perspective"
 socialImage: "../../assets/images/posts/terra_luna.jpg"
 ---

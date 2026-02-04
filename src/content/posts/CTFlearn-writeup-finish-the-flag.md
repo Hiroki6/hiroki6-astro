@@ -5,7 +5,7 @@ template: "post"
 draft: false
 slug: "writeup-finish-the-flag"
 category: "Reverse Engineering"
-tags: ['CTF', 'Security', 'Reverse Engineering']
+tags: ['Security', 'Writeup']
 description: "Writeup of 'Finish the flag' in CTFlearn reverse engineering challenge"
 socialImage: "../../assets/images/posts/letter.png"
 ---

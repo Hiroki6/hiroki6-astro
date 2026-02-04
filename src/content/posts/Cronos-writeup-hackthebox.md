@@ -5,7 +5,7 @@ template: "post"
 draft: false
 slug: "cronos-writeup"
 category: "Security"
-tags: ['Security','HackTheBox']
+tags: ['Security','Writeup']
 description: "Writeups of Cronos machine in HackTheBox"
 socialImage: "../../assets/images/posts/cronos-writesup/cronos.png"
 ---
