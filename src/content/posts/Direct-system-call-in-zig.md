@@ -15,15 +15,16 @@ socialImage: "../../assets/images/posts/circuit.jpg"
 In this article, I will walk through the internals of [zcircuit](https://github.com/Hiroki6/zcircuit), a Zig library I built for performing direct and indirect Windows system calls. It combines three well-known techniques -- Hell's Gate, TartarusGate, and Hell's Hall -- into a single, type-safe API with compile-time string obfuscation.
 
 1. [Background: Why Direct Syscalls?](#background-why-direct-syscalls)
-2. [Architecture Overview](#architecture-overview)
-3. [Finding ntdll.dll in Memory](#finding-ntdlldll-in-memory)
-4. [Hell's Gate: SSN Resolution from the Export Address Table](#hells-gate-ssn-resolution-from-the-export-address-table)
-5. [TartarusGate: Recovering SSNs from Hooked Functions](#tartarusgate-recovering-ssns-from-hooked-functions)
-6. [Hell's Hall: Indirect Syscall Execution](#hells-hall-indirect-syscall-execution)
-7. [Compile-Time CRC32 Hashing](#compile-time-crc32-hashing)
-8. [The Syscall Trampoline (Assembly)](#the-syscall-trampoline-assembly)
-9. [Putting It All Together](#putting-it-all-together)
-10. [References](#references)
+2. [Why Zig?](#why-zig)
+3. [Architecture Overview](#architecture-overview)
+4. [Finding ntdll.dll in Memory](#finding-ntdlldll-in-memory)
+5. [Hell's Gate: SSN Resolution from the Export Address Table](#hells-gate-ssn-resolution-from-the-export-address-table)
+6. [TartarusGate: Recovering SSNs from Hooked Functions](#tartarusgate-recovering-ssns-from-hooked-functions)
+7. [Hell's Hall: Indirect Syscall Execution](#hells-hall-indirect-syscall-execution)
+8. [Compile-Time CRC32 Hashing](#compile-time-crc32-hashing)
+9. [The Syscall Trampoline (Assembly)](#the-syscall-trampoline-assembly)
+10. [Putting It All Together](#putting-it-all-together)
+11. [References](#references)
 
 ## Background: Why Direct Syscalls?
 
@@ -44,6 +45,24 @@ However, there are complications:
 - Some EDR products also monitor the return address of `syscall` instructions -- if it points outside ntdll, the call is flagged as suspicious.
 
 zcircuit addresses these problems with three techniques.
+
+## Why Zig?
+
+Most existing implementations of Hell's Gate and related techniques are written in C or C++. I have been personally drawn to Zig for a while -- its error handling model (explicit error unions instead of exceptions or errno), `comptime`, and the general philosophy of "no hidden control flow" make it feel like the right level of abstraction for systems programming. Building zcircuit was partly an excuse to go deeper with the language.
+
+Zig is also an interesting choice for this kind of tooling, and its adoption in offensive security is growing. The [VoidLink](https://research.checkpoint.com/2026/voidlink-the-cloud-native-malware-framework/) malware framework -- a cloud-native Linux implant discovered in late 2025 -- was written in Zig. The [Zig Strike](https://www.webasha.com/blog/zig-strike-offensive-toolkit-evading-av-xdr-and-edr-detection) offensive toolkit demonstrated that Zig-compiled payloads can evade modern AV, XDR, and EDR stacks, partly because security engines lack training data on Zig's binary patterns and function epilogue structures.
+
+Beyond the novelty-based evasion advantage, Zig has several language features that map directly onto the problems zcircuit needs to solve:
+
+**`comptime` does the heavy lifting.** Zig's compile-time evaluation is the core of this library. The CRC32 hash of `"NtAllocateVirtualMemory"` is computed at compile time -- no preprocessor macro, no build script, just a regular function call with a `comptime` argument. The `Zcircuit(config)` generic returns a specialized type where dead branches (e.g., TartarusGate code when `search_neighbor = false`) are eliminated entirely by the compiler. Architecture validation is also `comptime`, so unsupported platforms fail at compile time, not at runtime.
+
+**First-class inline assembly.** The syscall trampoline requires precise control over registers and instruction sequences. Zig's inline assembly integrates with the type system -- the result of an `asm` expression can be directly passed to `@ptrFromInt` without casts or intermediate variables.
+
+**Explicit pointer arithmetic.** Parsing PE structures means reading memory at computed offsets. Zig forces every cast to be visible -- `@ptrCast`, `@alignCast`, `@intFromPtr` -- where C would let you silently cast `void*` to any struct pointer. When walking raw memory of a PE file, that explicitness catches alignment and signedness mistakes at compile time.
+
+**`extern struct` for ABI-compatible layouts.** The `ImageDosHeader`, `ImageNtHeaders64`, and `ImageExportDirectory` definitions must match the exact byte layout Windows uses. Zig's `extern struct` guarantees C-compatible field ordering, while regular `struct` may reorder fields for optimization. The guarantee is explicit in the type system.
+
+**No runtime, no libc.** Zig can produce standalone binaries without linking to libc. Fewer dependencies mean a smaller binary footprint and fewer entries in the PE import table -- less surface for static analysis to flag.
 
 ## Architecture Overview
 
