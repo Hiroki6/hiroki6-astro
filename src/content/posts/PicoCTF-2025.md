@@ -17,4 +17,4 @@ I solved 28 out of 40 challenges and ranked 419th out of approximately 10,000 te
 
 ![ranking.png](../../assets/images/posts/picoctf2025/ranking.png)
 
-Here is my [writesup](https://github.com/Hiroki6/ctf-writesup/tree/main/picoCTF-2025).
+Here is my [writesup](https://github.com/Hiroki6/ctf-writeups/tree/main/picoCTF-2025).

@@ -20,11 +20,11 @@ Living in Berlin since 2019.
 - [防衛省サイバーコンテスト](https://www.mod.go.jp/j/approach/defense/cyber/c_contest/index.html) (27th / 510)
 - [picoCTF 2025](https://picoctf.org/competitions/2025-spring.html) (419th / 10460)
     - [article](https://hiroki6.dev/posts/picoctf-2025)
-    - [writesup](https://github.com/Hiroki6/ctf-writesup/tree/main/picoCTF-2025)
+    - [writesup](https://github.com/Hiroki6/ctf-writeups/tree/main/picoCTF-2025)
 - [CryptoCTF 2025](https://cr.yp.toc.tf/) (86th / 364)
-    - [writesup](https://github.com/Hiroki6/ctf-writesup/tree/main/CryptoCTF-2025)
+    - [writesup](https://github.com/Hiroki6/ctf-writeups/tree/main/CryptoCTF-2025)
 - [Holmes CTF 2025](https://ctf.hackthebox.com/event/details/holmes-ctf-2025-2536) (383rd / 7085)
-    - [writesup](https://github.com/Hiroki6/ctf-writesup/tree/main/Holmes-CTF-2025)
+    - [writesup](https://github.com/Hiroki6/ctf-writeups/tree/main/Holmes-CTF-2025)
 
 
 ### Tech stack
