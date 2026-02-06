@@ -7,10 +7,10 @@ slug: "direct-system-call-in-zig"
 category: "Security"
 tags: ['Security', 'Zig', 'Malware']
 description: "A deep technical dive into zcircuit, a Zig library that implements Hell's Gate, TartarusGate, and Hell's Hall techniques for direct and indirect Windows syscall execution."
-socialImage: "../../assets/images/posts/circuit.jpg"
+socialImage: "../../assets/images/posts/direct-syscall/circuit.jpg"
 ---
 
-![circuit](../../assets/images/posts/circuit.jpg)
+![circuit](../../assets/images/posts/direct-syscall/circuit.jpg)
 
 In this article, I will walk through the internals of [zcircuit](https://github.com/Hiroki6/zcircuit), a Zig library I built for performing direct and indirect Windows system calls. It combines three well-known techniques -- Hell's Gate, TartarusGate, and Hell's Hall -- into a single, type-safe API with compile-time string obfuscation.
 
@@ -372,7 +372,7 @@ pub fn main() !void {
     // never appears in the binary
     const alloc = circuit.getSyscall("NtAllocateVirtualMemory", .{}) orelse return;
 
-    var addr: ?*anyopaque = null;
+    var addr: usize = 0;
     var size: usize = 4096;
     const handle = @as(*anyopaque, @ptrFromInt(@as(usize, 0xffffffffffffffff)));
 
@@ -385,6 +385,9 @@ pub fn main() !void {
         0x3000,   // AllocationType (MEM_COMMIT | MEM_RESERVE)
         0x04,     // Protect (PAGE_READWRITE)
     });
+    if (status == windows.NTSTATUS.SUCCESS) {
+        std.debug.print("allocated: 0x{X}", .{addr});
+    }
 }
 ```
 
@@ -414,6 +417,24 @@ inline fn argToUsize(arg: anytype) usize {
     };
 }
 ```
+
+Building with `-Doptimize=ReleaseSmall` produces a minimal binary:
+
+```
+zig build -Doptimize=ReleaseSmall
+```
+
+Running the example shows that `NtAllocateVirtualMemory` executes successfully and returns the allocated address:
+
+![virtual_alloc](../../assets/images/posts/direct-syscall/virtual_alloc.png)
+
+Opening the compiled binary in PE-bear confirms that `NtAllocateVirtualMemory` does not appear in the Import Address Table. The binary does not link to ntdll for this function -- the syscall is executed directly:
+
+![iat](../../assets/images/posts/direct-syscall/iat.png)
+
+Searching the binary's strings with `strings` also shows no trace of `NtAllocateVirtualMemory`. The compile-time CRC32 hashing replaced the function name with a numeric hash, leaving no readable API name for static analysis to flag:
+
+![strings](../../assets/images/posts/direct-syscall/strings.png)
 
 ## References
 
