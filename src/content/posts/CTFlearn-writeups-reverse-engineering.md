@@ -3,7 +3,7 @@ title: CTFlearn Writeups - Reverse engineering -
 published: 2022-05-10
 template: "post"
 draft: false
-slug: "writesup-reverse-engineering"
+slug: "writeup-reverse-engineering"
 category: "Reverse Engineering"
 tags: ['Security', 'Writeup']
 description: "Writeups of 'Ramada' and 'Recklinghausen' in CTFlearn reverse engineering challenge"
