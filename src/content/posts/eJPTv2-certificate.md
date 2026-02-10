@@ -3,7 +3,7 @@ title: I passed eJPT exam
 published: 2024-03-23
 template: "post"
 draft: false
-slug: "i-passed-ejpt-exam"
+slug: "ejpt-v2-certificate"
 category: "Security"
 tags: ['Certificate']
 description: ""

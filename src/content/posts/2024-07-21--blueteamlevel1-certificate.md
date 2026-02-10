@@ -3,7 +3,7 @@ title: I passed Blue Team Level 1 exam
 published: 2024-07-21
 template: "post"
 draft: false
-slug: "i-passed-blue-team-level1"
+slug: "blue-team-level1-certificate"
 category: "Security"
 tags: ['Certificate']
 description: ""
