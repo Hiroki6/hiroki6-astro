@@ -1,6 +1,6 @@
 ---
 title: Coding comparison between Cosmwasm and Solidity
-published: 2022-03-28
+published: 2022-03-27
 template: "post"
 draft: false
 slug: "cosmwasm-compared-with-solidity"
