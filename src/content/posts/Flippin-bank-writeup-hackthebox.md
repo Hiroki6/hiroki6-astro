@@ -6,7 +6,7 @@ draft: false
 slug: "flippin-bank-writeup"
 category: "Security"
 tags: ['Security', 'Writeup']
-description: "Writeups of Flippin bank crypto challenge in HackTheBox. This challenge requires a padding oracle attack."
+description: "Writeup of Flippin bank crypto challenge in HackTheBox. This challenge requires a padding oracle attack."
 socialImage: "../../assets/images/posts/flippin-bank/encryption.jpg"
 ---
 
