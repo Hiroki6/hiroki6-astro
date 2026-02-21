@@ -6,7 +6,7 @@ draft: false
 slug: "gradle-writeup"
 category: "Security"
 tags: ['Security','Writeup']
-description: "Writeups of Gradle"
+description: "Writeup of Gradle"
 socialImage: "../../assets/images/posts/gradlewriteup/gradle.jpeg"
 ---
 
