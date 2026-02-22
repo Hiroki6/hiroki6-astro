@@ -15,7 +15,7 @@ This lab is marked as hard on OffSec’s Proving Grounds Practice, though the co
 ## Enumeration
 
 I began with nmap.
-```
+```shell
 nmap -p- -Pn -oA nmap_alltcp -sS -T4 192.168.194.251
 ```
 
@@ -66,7 +66,7 @@ There was `local.txt` in `david`'s home directory.
 ![local](../../assets/images/posts/gradlewriteup/local.png)
 
 For post-exploitation, I enabled SSH login as `david`.
-![ssh_key_generated](../../assets/images/posts/gradlewriteup/ssl_key_generated.png)
+![generate_ssh_key](../../assets/images/posts/gradlewriteup/generate_ssh_key.png)
 ![id_rsa_pub](../../assets/images/posts/gradlewriteup/id_rsa_pub.png)
 ![add_authorized_keys](../../assets/images/posts/gradlewriteup/add_authorized_keys.png)
 ![ssh](../../assets/images/posts/gradlewriteup/ssh.png)
@@ -81,7 +81,7 @@ sudo -l
 ![suid](../../assets/images/posts/gradlewriteup/sudo_l.png)
 
 I tried to capture traffic for `lo` network.
-```
+```shell
 sudo /usr/sbin/tcpdump -w /tmp/test.pcap -ni lo
 ```
 
@@ -110,6 +110,10 @@ I downloaded [jSSLKeyLog](https://jsslkeylog.github.io/) and sent it over with s
 Then I added the line below to the script and restarted the application.
 `-javaagent:/home/david/jSSLKeyLog.jar=/home/david/SSLKEYLOG`
 
+```shell
+systemctl --user edit --full apache-ofbiz.service
+```
+
 ![add_keylog](../../assets/images/posts/gradlewriteup/add_keylog.png)
 ![restart_systemctl](../../assets/images/posts/gradlewriteup/restart_systemctl.png)
 
@@ -117,8 +121,9 @@ After restarting the application, I captured the traffic again.
 
 ![tcpdump_final](../../assets/images/posts/gradlewriteup/tcpdump_final.png)
 
-After capturing the traffic, I sent the pcap and `SSLKEYLOG` files to my machine.
+After capturing the traffic, I saw that `SSLKEYLOG` was created. I sent the pcap and `SSLKEYLOG` files to my machine.
 
+![ssh_key_generated](../../assets/images/posts/gradlewriteup/ssl_key_generated.png)
 ![send_SSLKEY_LOG](../../assets/images/posts/gradlewriteup/send_SSLKEY_LOG.png)
 
 After opening the pcap file with Wireshark, I set `SSLKEYLOG` as the (Pre)-Master-Secret log file in Wireshark's TLS protocol settings.
