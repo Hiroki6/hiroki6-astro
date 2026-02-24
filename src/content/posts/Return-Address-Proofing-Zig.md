@@ -547,6 +547,13 @@ Spoof:
 +    jmp r11
 ```
 
+It works with all optimization options as well (ReleaseSafe and ReleaseFast), though I omitted the screenshots.
+
+![final_injection_debug](../../assets/images/posts/returnaddressspoofing/final_injection_debug.png)
+
+![final_injection_small](../../assets/images/posts/returnaddressspoofing/final_injection_small.png)
+
+The return address is also spoofed correctly:
 ![proof_of_return_address](../../assets/images/posts/returnaddressspoofing/proof_of_return_address.png)
 
 ## Conclusion
