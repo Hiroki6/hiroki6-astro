@@ -127,14 +127,14 @@ const config: SiteConfig = {
     email: "hirokifujino0108@gmail.com",
     rss: true,
   },
-  /*giscus: {
-    repo: 'stelcodes/multiterm-astro',
-    repoId: 'R_kgDOPNnBig',
-    category: 'Giscus',
-    categoryId: 'DIC_kwDOPNnBis4CteOc',
+  giscus: {
+    repo: 'Hiroki6/hiroki6-astro',
+    repoId: 'R_kgDORHVLRw',
+    category: 'General',
+    categoryId: 'DIC_kwDORHVLR84C3IbG',
     reactionsEnabled: true, // Enable reactions on post itself
   },
-  characters: {
+  /*characters: {
     owl: '/owl.webp',
     unicorn: '/unicorn.webp',
     duck: '/duck.webp',
