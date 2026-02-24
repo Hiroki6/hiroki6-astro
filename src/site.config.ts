@@ -130,8 +130,8 @@ const config: SiteConfig = {
   giscus: {
     repo: 'Hiroki6/hiroki6-astro',
     repoId: 'R_kgDORHVLRw',
-    category: 'General',
-    categoryId: 'DIC_kwDORHVLR84C3IbG',
+    category: 'Announcements',
+    categoryId: 'DIC_kwDORHVLR84C3IbF',
     reactionsEnabled: true, // Enable reactions on post itself
   },
   /*characters: {
