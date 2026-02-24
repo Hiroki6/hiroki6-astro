@@ -5,7 +5,7 @@ template: "post"
 draft: false
 slug: "return-address-spoofing-in-zig"
 category: "Security"
-tags: ['Security','Writeup']
+tags: ['Security','Zig', 'Malware']
 description: "Implementing return address spoofing in Zig — navigating Zig compiler optimizations, x64 calling conventions, and assembly-level debugging"
 socialImage: "../../assets/images/posts/returnaddressspoofing/simple.png"
 ---
