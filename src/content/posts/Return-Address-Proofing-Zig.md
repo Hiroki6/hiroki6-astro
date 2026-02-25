@@ -1,5 +1,5 @@
 ---
-title: Return address spoofing in zig -- assembly dojo
+title: Return address spoofing in zig
 published: 2026-02-24
 template: "post"
 draft: false
