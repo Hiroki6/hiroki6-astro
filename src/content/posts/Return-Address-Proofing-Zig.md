@@ -237,7 +237,7 @@ I got a `segmentation fault`.
 
 I debugged with x64dbg by comparing how the register values look like when it crashed in the `displayReturnAddress` function.
 It crashed inside of the `std.debug.print` function.
-When it didn't crash, the `rcx` has a proper address.
+When it didn't crash, the `rcx` held a proper address.
 ![valid_rcx](../../assets/images/posts/returnaddressspoofing/valid_rcx.png)
 
 When it crashed, `rcx` held an invalid address (`0`). That was odd — I didn't immediately understand why `rcx` mattered at that point.
@@ -254,7 +254,7 @@ fn displayReturnAddress(a: u8) void {
 }
 ```
 
-Let's see what value `rcx` has when compiling with `zig build`.
+Let's see what value `rcx` holds when compiling with `zig build`.
 Here is the screenshot when `displayReturnAddress` was called.
 As you can see, argument 1 ended up in `rdx` instead of `rcx`.
 
@@ -408,7 +408,7 @@ However, when I build it with different optimization, none of them worked.
 
 I debugged for a while but couldn't pinpoint the cause — likely due to gaps in my reverse engineering skills. Since I couldn't identify anything obviously wrong in the code, I decided to rewrite `spoof.asm` from scratch, which would also deepen my assembly understanding.
 
-## Store the original address into StackConfig and jmp it
+### Store the original address into StackConfig and jmp it
 
 After some research, I found useful hints in [another great article](https://sabotagesec.com/the-stack-series-return-address-spoofing-on-x64/).
 I came up with some questions:
@@ -497,7 +497,7 @@ Spoof:
 +    push r15
 
     mov r10, rcx                            # address of Config, which is passed as an argument in rcx
-    mov [r10 + Config_retAddr], r11         # store return address in config (survives target call)
++    mov [r10 + Config_retAddr], r11         # store return address in config (survives target call)
     mov r12d, [r10 + Config_dwArgCount]     # number of arguments are stored in r12
     sub r12d, 4                             # no. of arguments on stack, as the first 4 are stored in registers
     mov r13, [r10 + Config_pArgs]           # args
