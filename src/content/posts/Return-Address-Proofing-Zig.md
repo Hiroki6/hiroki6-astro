@@ -14,6 +14,10 @@ socialImage: "../../assets/images/posts/returnaddressspoofing/simple.png"
 
 In this article, I will walk through the implementation of return address spoofing in Zig, along with lessons I learned while debugging assembly and compiler optimization issues.
 
+The demo was tested on the following environment:
+- Windows 10 (64-bit)
+- Zig: 0.15.2
+
 ## Return address spoofing
 
 Return address spoofing is a technique to make a thread's call stack look legitimate. When a Windows API is called from shellcode or from a non-image-backed memory region, security products can flag it by walking the call stack. By spoofing the return address, the call appears to originate from a trusted module (e.g. inside `kernel32.dll`), bypassing stack-based detection.

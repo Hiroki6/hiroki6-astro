@@ -26,6 +26,10 @@ In this article, I will walk through the internals of [zcircuit](https://github.
 10. [Putting It All Together](#putting-it-all-together)
 11. [References](#references)
 
+The demo was tested on the following environment:
+- Windows 10 (64-bit)
+- Zig: 0.15.2
+
 ## Background: Why Direct Syscalls?
 
 On Windows, user-mode applications interact with the kernel through **NT API functions** exported by `ntdll.dll`. When you call a function like `NtAllocateVirtualMemory`, the ntdll stub does the following:
