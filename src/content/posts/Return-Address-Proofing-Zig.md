@@ -426,10 +426,11 @@ Based on these questions, I made the following changes.
 1. Use `r11` instead of `rdi`
 
 The difference is volatile vs. non-volatile. But somehow using `rdi` didn't work, and I also found that some implementations use `r11` (like in [the original implementation](https://www.unknowncheats.me/forum/anti-cheat-bypass/268039-x64-return-address-spoofing-source-explanation.html) of this technique).
+I suspect this is because `rdi` is a non-volatile register. Changing its value during the function without restoring it can cause issues if the caller expects the original value to be preserved.
 
 2. Store return address and jump to it
 
-Even after switching to `r11`, it still didn't work (though I'm not 100% sure why). So I decided to also store the return address in the config struct and use it to jump back explicitly.
+Even after switching to `r11`, it still didn't work (though I'm not 100% sure why). So I decided to also store the return address in the config struct and use it to jump back explicitly. This is likely because `r11` is a volatile register, meaning its value may have been overwritten before the `jmp` instruction was executed.
 
 In the assembly, `rbx` doesn't point to the base of the config struct — it points to the `p_ebx` field (via `lea rbx, [r10 + Config_pRbx]` in `.Lcleanup`).
 So `rbx = config_base + 24`.
