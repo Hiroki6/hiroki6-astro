@@ -13,9 +13,10 @@ interface Props {
   description?: string
   tags?: string[]
   author?: string
+  published?: Date
 }
 
-const { title, description, tags, author } = Astro.props
+const { title, description, tags, author, published } = Astro.props
 const pageUrl = new URL(Astro.url.pathname, Astro.site).href.replace(/\/$/, '') // Remove trailing slash for consistency
 const pageType = Astro.url.pathname.startsWith('/posts') ? 'article' : 'website'
 const pageTitle = title ? `${title} - ${siteConfig.title}` : siteConfig.title
@@ -139,6 +140,12 @@ let generatedCss: string = cssLines.join('\n')
     <meta name="twitter:description" content={pageDescription} />
     {pageImage && <meta name="twitter:image" content={pageImage} />}
     <meta name="keywords" content={pageKeywords} />
+    {pageType === 'article' && published && (
+      <meta property="article:published_time" content={published.toISOString()} />
+    )}
+    {pageType === 'article' && (
+      <meta property="article:author" content={pageAuthor} />
+    )}
     <link rel="canonical" href={pageUrl} />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -153,6 +160,35 @@ let generatedCss: string = cssLines.join('\n')
     <style is:inline set:html={generatedCss}></style>
     {themeMode === 'light-dark-auto' && <LightDarkAutoThemeLoader />}
     {themeMode === 'select' && <SelectThemeLoader />}
+    {pageType === 'article' ? (
+      <script type="application/ld+json" set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: title,
+        description: pageDescription,
+        url: pageUrl,
+        ...(published && { datePublished: published.toISOString() }),
+        ...(pageImage && { image: pageImage }),
+        author: {
+          '@type': 'Person',
+          name: pageAuthor,
+          url: siteConfig.site,
+        },
+        publisher: {
+          '@type': 'Person',
+          name: pageAuthor,
+          url: siteConfig.site,
+        },
+      })} />
+    ) : (
+      <script type="application/ld+json" set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: siteConfig.author,
+        url: siteConfig.site,
+        description: pageDescription,
+      })} />
+    )}
   </head>
   <body class="w-full h-full m-0 bg-background text-foreground">
     <div
