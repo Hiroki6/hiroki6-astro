@@ -1,6 +1,6 @@
 ---
 title: OSCP+ Certificate
-published: 2026-04-28
+published: 2026-05-05
 template: "post"
 draft: false
 slug: "oscp-certificate"
