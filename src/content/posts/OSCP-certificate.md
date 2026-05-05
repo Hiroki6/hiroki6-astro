@@ -76,6 +76,8 @@ I reached the passing score (70 pt) after 6 hours.
 |4/25|19:00-20:00|Dinner break|60|
 |4/25|20:15|local.txt of Independent Machine 2|70|
 |4/25|21:00|proof.txt of Independent Machine 2|80|
+|4/25|21:00-22:00|Break|80|
+|4/25|22:00-0:00|Tried Independent Machine 3|80|
 |4/26|0:00|Sleep|80|
 |4/26|6:00-10:00|Tried Independent Machine 3, but gave up|80|
 |4/26|10:00-12:00|Checked the screenshots and notes|80|
