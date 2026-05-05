@@ -11,9 +11,10 @@ Living in Berlin since 2019.
 
 ### Certificates
 
-- [eJPT](https://ine.com/security/certifications/ejpt-certification) (2024/03)
-- [Blue Team Level1](https://www.securityblue.team/certifications/blue-team-level-1) (2024/07)
-- [Certified Red Team Operator](https://training.zeropointsecurity.co.uk/courses/red-team-ops) (2025/08)
+- [eJPT](https://certs.ine.com/542217f7-7c41-46bc-b6b8-b068ae660e74) (2024/03)
+- [Blue Team Level1](https://www.credly.com/badges/47b422b5-74d7-4474-8f6d-85f983115a56/) (2024/07)
+- [Certified Red Team Operator](https://eu.badgr.com/public/assertions/T341H1XDR9yPknbWFgJ3fA) (2025/08)
+- [OSCP+](https://credentials.offsec.com/c6913b4c-7bc4-4152-99df-bc24c2aa9c05) (2026/04)
 
 ### CTF
 
