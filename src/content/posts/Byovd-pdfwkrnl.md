@@ -357,3 +357,11 @@ Full console output after the patch completes successfully.
 Disassembling `CiValidateImageHeader` again confirms the patch landed: it now opens with `xor rax, rax; ret`.
 
 ![CiValidateImageHeader_patched](../../assets/images/posts/byovd-dse/CiValidateImageHeader_patched.png)
+
+## References
+
+- [Hiroki6/BYOVD/PDFWKRNL - GitHub](https://github.com/Hiroki6/BYOVD/tree/main/PDFWKRNL)
+- [BYOVD and Looting LSASS in the Modern EDR Era](https://g3tsyst3m.com/byovd/BYOVD-and-Looting-LSASS-in-the-Modern-EDR-Era/)
+- [The Dusk of g_CiOptions: Circumventing DSE with VBS enabled](https://blog.cryptoplague.net/main/research/windows-research/the-dusk-of-g_cioptions-circumventing-dse-with-vbs-enabled)
+- [g_CiOptions in a Virtualized World](https://blog.xpnsec.com/gcioptions-in-a-virtualized-world/)
+- [PTE Overwrites](https://connormcgarr.github.io/pte-overwrites/)
