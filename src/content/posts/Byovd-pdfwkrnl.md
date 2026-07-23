@@ -308,7 +308,7 @@ patched = TRUE;
 
 ## Demo
 
-To demonstrate the bypass, I tried installing a rootkit — an unsigned kernel driver — with and without my PoC running.
+To demonstrate the bypass, I tried installing a rootkit — an unsigned kernel driver — with and without my PoC running. The target machine was Windows 11 (10.0.26200).
 
 ### Install Rootkit
 
