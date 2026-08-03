@@ -3,7 +3,7 @@ layout: '~/layouts/MarkdownLayout.astro'
 title: About Me
 ---
 
-![explore](../assets/images/posts/explore.jpg)
+![explore](../assets/images/me.jpg)
 
 ## Hiroki Fujino
 Software developer, mainly developing the back end of web applications. 
